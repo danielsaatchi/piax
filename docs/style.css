@@ -1,0 +1,828 @@
+/* ─────────────────────────────────────────────
+   PIAT — Posthumanism Institute of Aliens & Transpecies
+   Two themes: dark (default) and light (paper white).
+   Toggled via [data-theme] on <html>.
+   Font: Cascadia Code throughout.
+───────────────────────────────────────────── */
+
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/cascadia-code@4.2.1/index.css');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ══════════════════════════════════════
+   DARK THEME (default)
+══════════════════════════════════════ */
+:root,
+[data-theme="dark"] {
+  --bg:           #000000;
+  --hero-c1:      rgba(0,0,0,0.90);
+  --hero-c2:      rgba(0,0,0,0.65);
+  --float-color:  #6b7280;
+  --eyebrow-col:  #6b7280;
+  --title-col:    #e8eaed;
+  --title-shadow: 0 0 30px rgba(200,210,220,0.15), 0 0 60px rgba(140,155,175,0.08);
+  --divider-col:  linear-gradient(90deg, transparent, #8b9ab0, transparent);
+  --divider-glow: rgba(139,154,176,0.3);
+  --establish-col:#9ca3af;
+  --org-col:      #ffffff;
+  --org-shadow:   0 0 20px rgba(255,255,255,0.18);
+  --tagline-col:  #6b7280;
+  --cursor-col:   #c8cdd6;
+  --cursor-glow:  rgba(200,210,220,0.5);
+  --canvas-op:    0.45;
+
+  /* toggle */
+  --toggle-track: #2a2a2a;
+  --toggle-thumb: #c8cdd6;
+  --toggle-label: #6b7280;
+  --toggle-active:#e8eaed;
+  --toggle-border: #3a3a3a;
+}
+
+/* ══════════════════════════════════════
+   LIGHT THEME
+══════════════════════════════════════ */
+[data-theme="light"] {
+  --bg:           #e8e4df;
+  --hero-c1:      rgba(240,236,230,0.92);
+  --hero-c2:      rgba(232,228,223,0.70);
+  --float-color:  #7a7268;
+  --eyebrow-col:  #7a7268;
+  --title-col:    #1a1714;
+  --title-shadow: none;
+  --divider-col:  linear-gradient(90deg, transparent, #5a5248, transparent);
+  --divider-glow: rgba(90,82,72,0.2);
+  --establish-col:rgba(26,23,20,0.50);
+  --org-col:      #1a1714;
+  --org-shadow:   none;
+  --tagline-col:  #b0a89e;
+  --cursor-col:   #3a3530;
+  --cursor-glow:  rgba(58,53,48,0.3);
+  --canvas-op:    0.38;
+
+  /* toggle */
+  --toggle-track: #d4cfc9;
+  --toggle-thumb: #3a3530;
+  --toggle-label: #7a7268;
+  --toggle-active:#1a1714;
+  --toggle-border: #b0a89e;
+}
+
+/* ══════════════════════════════════════
+   THEME TOGGLE — top right
+══════════════════════════════════════ */
+.theme-toggle {
+  position: fixed;
+  top: 1.2rem;
+  right: 1.4rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-label {
+  font-family: "Cascadia Code", "Cascadia Mono", "Courier New", monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  color: var(--toggle-label);
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+/* Highlight the active side */
+[data-theme="dark"]  #toggle-label-dark  { color: var(--toggle-active); }
+[data-theme="light"] #toggle-label-light { color: var(--toggle-active); }
+
+.toggle-track {
+  width: 2.6rem;
+  height: 1.25rem;
+  background: var(--toggle-track);
+  border: 1px solid var(--toggle-border);
+  border-radius: 999px;
+  position: relative;
+  transition: background 0.35s, border-color 0.35s;
+  flex-shrink: 0;
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 3px;
+  width: 0.85rem;
+  height: 0.85rem;
+  background: var(--toggle-thumb);
+  border-radius: 50%;
+  transition: left 0.35s cubic-bezier(.4,0,.2,1), background 0.35s;
+}
+
+[data-theme="light"] .toggle-thumb {
+  left: calc(100% - 0.85rem - 3px);
+}
+
+/* ══════════════════════════════════════
+   BODY
+══════════════════════════════════════ */
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  font-family: "Cascadia Code", "Cascadia Mono", "Courier New", Courier, monospace;
+  transition: background 0.5s;
+}
+
+/* ── Matrix canvas ── */
+#matrix-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: var(--canvas-op);
+  transition: opacity 0.5s;
+}
+
+/* ── Floating word cloud ── */
+#floating-words {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.float-word {
+  position: absolute;
+  font-family: inherit;
+  color: var(--float-color);
+  white-space: nowrap;
+  opacity: 0;
+  animation: floatUp linear forwards;
+  letter-spacing: 0.05em;
+}
+
+@keyframes floatUp {
+  0%   { opacity: 0;    transform: translateY(0)     scale(1); }
+  10%  { opacity: 0.50; }
+  80%  { opacity: 0.20; }
+  100% { opacity: 0;    transform: translateY(-35vh) scale(0.75); }
+}
+
+/* ── Hero overlay ── */
+.hero {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    ellipse 68% 58% at 50% 50%,
+    var(--hero-c1) 0%,
+    var(--hero-c2) 50%,
+    transparent 100%
+  );
+  transition: background 0.5s;
+}
+
+.hero-inner {
+  text-align: center;
+  max-width: 820px;
+  padding: 2rem 1.5rem;
+}
+
+.eyebrow {
+  font-size: clamp(0.6rem, 1.2vw, 0.78rem);
+  letter-spacing: 0.38em;
+  color: var(--eyebrow-col);
+  text-transform: uppercase;
+  margin-bottom: 1.6rem;
+  min-height: 1.2em;
+  transition: color 0.5s;
+}
+
+.piat-title {
+  font-size: clamp(1.3rem, 3.5vw, 2.55rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+  color: var(--title-col);
+  text-shadow: var(--title-shadow);
+  min-height: 3em;
+  white-space: pre-line;
+  transition: color 0.5s;
+}
+
+.piax-subtitle {
+  font-size: clamp(0.58rem, 1.1vw, 0.72rem);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #ff2200;
+  text-shadow: 0 0 12px rgba(255,34,0,0.35);
+  margin-top: 0.5rem;
+  min-height: 1.1em;
+  transition: color 0.5s;
+}
+
+.divider {
+  width: 0;
+  height: 1px;
+  background: var(--divider-col);
+  margin: 1.8rem auto;
+  transition: width 1.2s ease, background 0.5s;
+  box-shadow: 0 0 6px var(--divider-glow);
+}
+.divider.expanded { width: 340px; }
+
+.establish {
+  font-size: clamp(0.65rem, 1.3vw, 0.82rem);
+  letter-spacing: 0.3em;
+  color: var(--establish-col);
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+  min-height: 1.2em;
+  transition: color 0.5s;
+}
+
+.org {
+  font-size: clamp(0.7rem, 1.5vw, 0.95rem);
+  letter-spacing: 0.22em;
+  color: var(--org-col);
+  text-transform: uppercase;
+  font-weight: 600;
+  text-shadow: var(--org-shadow);
+  margin-bottom: 2rem;
+  min-height: 1.2em;
+  transition: color 0.5s;
+}
+
+.tagline {
+  font-size: clamp(0.55rem, 1vw, 0.7rem);
+  color: var(--tagline-col);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  min-height: 1.2em;
+  transition: color 0.5s;
+}
+
+.cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  background: var(--cursor-col);
+  vertical-align: text-bottom;
+  animation: blink 0.75s step-end infinite;
+  margin-left: 2px;
+  box-shadow: 0 0 8px var(--cursor-glow);
+  transition: background 0.5s;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@media (max-width: 520px) {
+  .divider.expanded { width: 80vw; }
+  .theme-toggle { top: 0.8rem; right: 0.8rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float-word    { animation: none; opacity: 0.12; }
+  .cursor        { animation: none; opacity: 1; }
+  #matrix-canvas { display: none; }
+}
+
+/* ══════════════════════════════════════
+   NAV BAR
+══════════════════════════════════════ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.75rem 1.8rem;
+  background: transparent;
+  border-bottom: 1px solid var(--toggle-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: border-color 0.5s;
+}
+
+.nav-brand {
+  font-family: var(--font-mono, "Cascadia Code", monospace);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: var(--org-col);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 0.2rem;
+  flex: 1;
+}
+
+.nav-link {
+  font-family: var(--font-mono, "Cascadia Code", monospace);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--toggle-label);
+  padding: 0.35rem 0.7rem;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--org-col);
+  border-color: var(--toggle-border);
+}
+
+/* Theme toggle inside nav — override positioning */
+.nav .theme-toggle {
+  position: static;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════
+   PAGE SYSTEM
+══════════════════════════════════════ */
+.page {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  overflow-y: auto;
+}
+
+.page.active { display: block; }
+
+/* Home page: full-screen centred hero */
+#page-home .hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 3.5rem; /* clear nav */
+}
+
+/* Inner pages: scrollable content */
+.inner-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 6rem 2rem 4rem;
+}
+
+.page-eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  color: var(--eyebrow-col);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  transition: color 0.5s;
+}
+
+.page-title {
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--title-col);
+  margin-bottom: 0.4rem;
+  transition: color 0.5s;
+}
+
+/* ── Collaborators list ── */
+.collab-list {
+  list-style: none;
+  margin-top: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.collab-item {
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--toggle-border);
+  transition: border-color 0.5s;
+}
+
+.collab-item:first-child { border-top: 1px solid var(--toggle-border); }
+
+.collab-index {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--eyebrow-col);
+  flex-shrink: 0;
+  width: 1.8rem;
+  transition: color 0.5s;
+}
+
+.collab-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.collab-name {
+  font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+  letter-spacing: 0.12em;
+  color: var(--title-col);
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: color 0.5s;
+}
+
+.collab-tag {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--establish-col);
+  text-transform: uppercase;
+  transition: color 0.5s;
+}
+
+/* ── Sponsor card ── */
+.sponsor-card {
+  margin-top: 2.4rem;
+  border: 1px solid var(--toggle-border);
+  padding: 2rem 2rem 2rem;
+  transition: border-color 0.5s;
+}
+
+.sponsor-badge {
+  font-size: 0.58rem;
+  letter-spacing: 0.35em;
+  color: #ff3300;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.sponsor-name {
+  font-size: clamp(0.9rem, 2vw, 1.3rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--title-col);
+  text-transform: uppercase;
+  transition: color 0.5s;
+}
+
+.sponsor-abbr {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--establish-col);
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+  margin-bottom: 1.2rem;
+  transition: color 0.5s;
+}
+
+.sponsor-desc {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  line-height: 1.8;
+  color: var(--tagline-col);
+  transition: color 0.5s;
+}
+
+/* ── Resources placeholder ── */
+.resources-placeholder {
+  margin-top: 2.4rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  color: var(--eyebrow-col);
+  transition: color 0.5s;
+}
+
+/* ── Inner page background — transparent so rain shows through ── */
+#page-collaborators,
+#page-sponsors,
+#page-resources {
+  background: transparent;
+  transition: background 0.5s;
+}
+
+/* Full-screen vignette behind content — does not affect layout */
+#page-collaborators::before,
+#page-sponsors::before,
+#page-resources::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 80% 80% at 50% 50%,
+    var(--hero-c1) 0%,
+    var(--hero-c2) 55%,
+    transparent 100%
+  );
+}
+
+/* Ensure inner-page content sits above the vignette */
+#page-collaborators .inner-page,
+#page-sponsors .inner-page,
+#page-resources .inner-page {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Footer ── */
+.site-footer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  text-align: center;
+  padding: 0.85rem 1rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--tagline-col);
+  border-top: 1px solid var(--toggle-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: color 0.5s, border-color 0.5s;
+}
+
+/* Only show footer on the active page */
+.page:not(.active) .site-footer { display: none; }
+
+/* ══════════════════════════════════════
+   RESOURCES PAGE
+══════════════════════════════════════ */
+
+/* Override inner-page max-width for resources — needs more horizontal room */
+.resources-inner {
+  max-width: 900px;
+  padding-bottom: 4rem; /* clear fixed footer */
+}
+
+/* ── Section label ── */
+.res-section {
+  margin-top: 2.6rem;
+}
+
+.res-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--eyebrow-col);
+  margin-bottom: 1.2rem;
+  transition: color 0.5s;
+}
+
+/* ── Horizontal scrolling strip ── */
+.media-strip {
+  display: flex;
+  flex-direction: row; /* left-to-right */
+  gap: 1.2rem;
+  overflow-x: auto;
+  padding-bottom: 0.8rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--toggle-border) transparent;
+}
+
+.media-strip::-webkit-scrollbar { height: 4px; }
+.media-strip::-webkit-scrollbar-track { background: transparent; }
+.media-strip::-webkit-scrollbar-thumb { background: var(--toggle-border); border-radius: 2px; }
+
+/* ── Individual card ── */
+.media-card {
+  flex-shrink: 0;
+  width: 130px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ── Cover art frame ── */
+.media-cover {
+  width: 130px;
+  height: 190px;
+  overflow: hidden;
+  border: 1px solid var(--toggle-border);
+  position: relative;
+  background: var(--toggle-track);
+  transition: border-color 0.3s;
+}
+
+.media-cover:hover { border-color: var(--establish-col); }
+
+.media-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(15%);
+  transition: filter 0.3s, transform 0.3s;
+}
+
+.media-cover img:hover {
+  filter: grayscale(0%);
+  transform: scale(1.04);
+}
+
+/* ── Card text ── */
+.media-title {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--title-col);
+  line-height: 1.4;
+  transition: color 0.5s;
+}
+
+.media-year {
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  color: var(--eyebrow-col);
+  transition: color 0.5s;
+}
+
+/* ── Book placeholder covers ── */
+.book-cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem;
+  text-align: center;
+}
+
+.book-placeholder-title {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--establish-col);
+  line-height: 1.6;
+  transition: color 0.5s;
+}
+
+/* ── Journal placeholder covers ── */
+.journal-slot { flex-shrink: 0; width: 130px; }
+
+.journal-cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-style: dashed !important;
+}
+
+.journal-placeholder-text {
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--toggle-label);
+  transition: color 0.5s;
+}
+
+/* ── Publications list ── */
+.pub-list {
+  list-style: none;
+  margin-top: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pub-item {
+  display: flex;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--toggle-border);
+  transition: border-color 0.5s;
+}
+
+.pub-item:first-child { border-top: 1px solid var(--toggle-border); }
+
+.pub-index {
+  font-size: 0.65rem;
+  color: var(--eyebrow-col);
+  flex-shrink: 0;
+  transition: color 0.5s;
+}
+
+.pub-text {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  line-height: 1.7;
+  color: var(--establish-col);
+  transition: color 0.5s;
+}
+
+/* ══════════════════════════════════════
+   RESEARCH DIVISIONS PAGE
+══════════════════════════════════════ */
+
+#page-research {
+  background: transparent;
+  transition: background 0.5s;
+}
+
+#page-research::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 80% 80% at 50% 50%,
+    var(--hero-c1) 0%,
+    var(--hero-c2) 55%,
+    transparent 100%
+  );
+}
+
+#page-research .inner-page {
+  position: relative;
+  z-index: 1;
+}
+
+.research-inner {
+  max-width: 820px;
+  padding-bottom: 4rem;
+}
+
+/* ── Division block ── */
+.rd-division {
+  margin-top: 2.4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--toggle-border);
+  transition: border-color 0.5s;
+}
+
+.rd-division:first-of-type { border-top: none; margin-top: 2rem; }
+
+.rd-header {
+  display: flex;
+  gap: 1.4rem;
+  align-items: flex-start;
+  margin-bottom: 1.2rem;
+}
+
+.rd-num {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--eyebrow-col);
+  flex-shrink: 0;
+  padding-top: 0.25rem;
+  width: 1.8rem;
+  transition: color 0.5s;
+}
+
+.rd-title {
+  font-size: clamp(0.8rem, 1.8vw, 1rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--title-col);
+  margin-bottom: 0.4rem;
+  transition: color 0.5s;
+}
+
+.rd-desc {
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  line-height: 1.75;
+  color: var(--establish-col);
+  transition: color 0.5s;
+}
+
+/* ── Tag pills ── */
+.rd-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-left: 3.2rem; /* align under title, past rd-num */
+}
+
+.rd-tags li {
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--tagline-col);
+  padding: 0.28rem 0.7rem;
+  border: 1px solid var(--toggle-border);
+  border-radius: 1px;
+  transition: color 0.2s, border-color 0.2s;
+  cursor: default;
+}
+
+.rd-tags li:hover {
+  color: var(--org-col);
+  border-color: var(--establish-col);
+}

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PIAX — Posthumanism Institute of AI & Xenobiotechnology (PIAX)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="nav" id="main-nav">
+    <div class="nav-brand">PIAX</div>
+    <ul class="nav-links">
+      <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+      <li><a href="#" class="nav-link" data-page="research">Research</a></li>
+      <li><a href="#" class="nav-link" data-page="collaborators">Collaborators</a></li>
+      <li><a href="#" class="nav-link" data-page="sponsors">Sponsors</a></li>
+      <li><a href="#" class="nav-link" data-page="resources">Resources</a></li>
+    </ul>
+    <!-- Theme toggle moved into nav right side -->
+    <div class="theme-toggle" id="theme-toggle" title="Switch theme">
+      <span class="toggle-label" id="toggle-label-dark">◑ DARK</span>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <span class="toggle-label" id="toggle-label-light">LIGHT ◐</span>
+    </div>
+  </nav>
+
+  <!-- ── MATRIX RAIN ── -->
+  <canvas id="matrix-canvas"></canvas>
+
+  <!-- ── FLOATING WORDS ── -->
+  <div id="floating-words" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════
+       PAGE: HOME
+  ══════════════════════════════════════ -->
+  <main class="page active" id="page-home">
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="eyebrow" id="eyebrow-type"></div>
+        <h1 class="piat-title" id="piat-title"></h1>
+        <p class="piax-subtitle" id="piax-subtitle"></p>
+        <div class="divider"></div>
+        <p class="establish" id="establish-type"></p>
+        <p class="org" id="org-type"></p>
+        <div class="tagline" id="tagline-type"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ══════════════════════════════════════
+       PAGE: RESEARCH
+  ══════════════════════════════════════ -->
+  <main class="page" id="page-research">
+    <div class="inner-page research-inner">
+      <p class="page-eyebrow">>/ Research Vision</p>
+      <h2 class="page-title">Research Divisions</h2>
+      <div class="divider expanded"></div>
+
+      <!-- 1 -->
+      <div class="rd-division">
+        <div class="rd-header">
+          <span class="rd-num">01</span>
+          <div>
+            <h3 class="rd-title">AI &amp; Artificial Intelligence Systems</h3>
+            <p class="rd-desc">Research on advanced computational intelligence and autonomous systems.</p>
+          </div>
+        </div>
+        <ul class="rd-tags">
+          <li>Agentic AI</li><li>Scientific AI</li><li>Artificial General Intelligence (AGI)</li>
+          <li>AI for Scientific Discovery</li><li>Multi-Agent Systems</li>
+          <li>AI Reasoning and World Models</li><li>Autonomous Scientific Agents</li>
+          <li>AI for Biological and Materials Discovery</li>
+        </ul>
+      </div>
+
+      <!-- 2 -->
+      <div class="rd-division">
+        <div class="rd-header">
+          <span class="rd-num">02</span>
+          <div>
+            <h3 class="rd-title">Xenobiology &amp; Alternative Life</h3>
+            <p class="rd-desc">Research into the fundamental principles, theoretical possibilities, and computational models of life beyond conventional terrestrial biology.</p>
+          </div>
+        </div>
+        <ul class="rd-tags">
+          <li>Non-Terrestrial Life Theories</li><li>Alternative Biochemistries</li>
+          <li>Artificial Life</li><li>Computational Xenobiology</li>
+          <li>Hypothetical Alien Biology</li><li>Evolutionary Artificial Life</li>
+          <li>Alternative Biological Architectures</li><li>Origins and Evolution of Intelligence</li>
+        </ul>
+      </div>
+
+      <!-- 3 -->
+      <div class="rd-division">
+        <div class="rd-header">
+          <span class="rd-num">03</span>
+          <div>
+            <h3 class="rd-title">Xenobiotechnology</h3>
+            <p class="rd-desc">Research on the engineering and technological application of alternative, synthetic, and unconventional biological systems.</p>
+          </div>
+        </div>
+        <ul class="rd-tags">
+          <li>Synthetic Organisms</li><li>Novel Biomaterials</li>
+          <li>Engineered Biological Systems</li><li>AI-Driven Biotechnology</li>
+          <li>Synthetic Biology</li><li>Biohybrid Systems</li>
+          <li>Living Machines</li><li>Artificial Cells</li>
+          <li>Computational Bioengineering</li><li>AI for Biological Design</li>
+        </ul>
+      </div>
+
+      <!-- 4 -->
+      <div class="rd-division">
+        <div class="rd-header">
+          <span class="rd-num">04</span>
+          <div>
+            <h3 class="rd-title">Posthuman Technologies &amp; Biorobotics</h3>
+            <p class="rd-desc">Research on the convergence of humans, machines, biology, and artificial intelligence.</p>
+          </div>
+        </div>
+        <ul class="rd-tags">
+          <li>Human Augmentation</li><li>Brain–Computer Interfaces</li>
+          <li>Cybernetic Systems</li><li>Intelligent Materials</li>
+          <li>Biorobotics</li><li>Biohybrid Robotics</li>
+          <li>Human–Machine Integration</li><li>Artificial Organs and Intelligent Prosthetics</li>
+          <li>Embodied Artificial Intelligence</li><li>Posthuman Robotics</li>
+        </ul>
+      </div>
+
+      <!-- 5 -->
+      <div class="rd-division">
+        <div class="rd-header">
+          <span class="rd-num">05</span>
+          <div>
+            <h3 class="rd-title">Xeno-Robotics &amp; Robotic Metamaterials</h3>
+            <p class="rd-desc">A particularly distinctive PIAX research division focused on unconventional robotic architectures inspired by alternative biology and physics.</p>
+          </div>
+        </div>
+        <ul class="rd-tags">
+          <li>Xeno-Robotics</li><li>Xenobiologically Inspired Robots</li>
+          <li>Robotic Metamaterials</li><li>Soft Robotics</li>
+          <li>Bio-Inspired Robotic Systems</li><li>Morphological Computation</li>
+          <li>Programmable Matter</li><li>Self-Reconfiguring Robots</li>
+          <li>Intelligent Mechanical Systems</li><li>Living and Biohybrid Robots</li>
+        </ul>
+      </div>
+
+      <!-- 6 -->
+      <div class="rd-division">
+        <div class="rd-header">
+          <span class="rd-num">06</span>
+          <div>
+            <h3 class="rd-title">AI, Metamaterials &amp; Intelligent Matter</h3>
+            <p class="rd-desc">This division could become one of PIAX's strongest scientific and technological foundations.</p>
+          </div>
+        </div>
+        <ul class="rd-tags">
+          <li>AI in Metamaterials Informatics</li><li>Computational Metamaterials Design</li>
+          <li>Metamaterials Informatics</li><li>Intelligent Materials</li>
+          <li>AI-Enabled Materials Discovery</li><li>Physics-Informed Machine Learning</li>
+          <li>Inverse Design</li><li>Generative Design of Metamaterials</li>
+          <li>Digital Twins for Intelligent Materials</li><li>Autonomous Materials Laboratories</li>
+        </ul>
+      </div>
+
+      <!-- 7 -->
+      <div class="rd-division">
+        <div class="rd-header">
+          <span class="rd-num">07</span>
+          <div>
+            <h3 class="rd-title">Brain Interface &amp; Neuro-Metamaterials</h3>
+            <p class="rd-desc">A specialized division at the intersection of neuroscience, metamaterials, AI, and human–machine interfaces.</p>
+          </div>
+        </div>
+        <ul class="rd-tags">
+          <li>Brain Interface Metamaterials</li><li>Acoustic Brain Interfaces</li>
+          <li>Neuro-Metamaterials</li><li>Brain–Computer Interfaces</li>
+          <li>Non-Invasive Neural Interfaces</li><li>AI-Enabled Neural Signal Processing</li>
+          <li>Intelligent Neural Interfaces</li><li>Neuromorphic Materials</li>
+          <li>Metamaterial-Based Neurotechnology</li><li>Brain Stimulation Technologies</li>
+        </ul>
+      </div>
+
+    </div>
+    <footer class="site-footer">2027–Present &copy; PIAX &nbsp;·&nbsp; All rights reserved.</footer>
+  </main>
+
+  <!-- ══════════════════════════════════════
+       PAGE: COLLABORATORS
+  ══════════════════════════════════════ -->
+  <main class="page" id="page-collaborators">
+    <div class="inner-page">
+      <p class="page-eyebrow">>/ Collaborators</p>
+      <h2 class="page-title">Network & Partners</h2>
+      <div class="divider expanded"></div>
+
+      <ul class="collab-list">
+
+        <li class="collab-item">
+          <span class="collab-index">01</span>
+          <div class="collab-body">
+            <span class="collab-name">Daniel Saatchi Designs &amp; Technologies</span>
+            <span class="collab-tag">DSDT</span>
+          </div>
+        </li>
+
+        <li class="collab-item">
+          <span class="collab-index">02</span>
+          <div class="collab-body">
+            <span class="collab-name">ONSOFA Studio</span>
+            <span class="collab-tag">[4] Artificial Intelligence</span>
+          </div>
+        </li>
+
+        <li class="collab-item">
+          <span class="collab-index">03</span>
+          <div class="collab-body">
+            <span class="collab-name">AI Journal of Arts &amp; Metascience</span>
+          </div>
+        </li>
+
+        <li class="collab-item">
+          <span class="collab-index">04</span>
+          <div class="collab-body">
+            <span class="collab-name">XSEALD Studio</span>
+            <span class="collab-tag">[4] Technology Design</span>
+          </div>
+        </li>
+
+        <li class="collab-item">
+          <span class="collab-index">05</span>
+          <div class="collab-body">
+            <span class="collab-name">XSEALD Subdivision</span>
+            <span class="collab-tag">[4] AI Trauma Telemedicine Systems</span>
+          </div>
+        </li>
+
+        <li class="collab-item">
+          <span class="collab-index">06</span>
+          <div class="collab-body">
+            <span class="collab-name">XSEALD Subdivision</span>
+            <span class="collab-tag">[4] Transhumanism &amp; Transpace Xenobiotechnology</span>
+          </div>
+        </li>
+
+        <li class="collab-item">
+          <span class="collab-index">07</span>
+          <div class="collab-body">
+            <span class="collab-name">DAATCHI Studio</span>
+            <span class="collab-tag">[4] Fashion Technology Design</span>
+          </div>
+        </li>
+
+        <li class="collab-item">
+          <span class="collab-index">08</span>
+          <div class="collab-body">
+            <span class="collab-name">ATINNITUS Metal Band</span>
+          </div>
+        </li>
+
+        <li class="collab-item">
+          <span class="collab-index">09</span>
+          <div class="collab-body">
+            <span class="collab-name">ATINNITUS Music Studio</span>
+            <span class="collab-tag">[4] Neuromorphic Brain Interface Acoustic Metamaterials</span>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+    <footer class="site-footer">2027–Present &copy; PIAX &nbsp;·&nbsp; All rights reserved.</footer>
+  </main>
+
+  <!-- ══════════════════════════════════════
+       PAGE: SPONSORS
+  ══════════════════════════════════════ -->
+  <main class="page" id="page-sponsors">
+    <div class="inner-page">
+      <p class="page-eyebrow">>/ Sponsors</p>
+      <h2 class="page-title">Institutional Support</h2>
+      <div class="divider expanded"></div>
+
+      <div class="sponsor-card">
+        <div class="sponsor-badge">PRINCIPAL SPONSOR</div>
+        <div class="sponsor-name">Daniel Saatchi Designs &amp; Technologies</div>
+        <div class="sponsor-abbr">DSDT</div>
+        <div class="sponsor-desc">
+          DSDT Studios behind PIAX — driving research, infrastructure,
+          and creative vision for the 2027 establishment.
+        </div>
+      </div>
+
+      <div class="sponsor-card">
+        <div class="sponsor-badge">SPONSOR</div>
+        <div class="sponsor-name">Daniel Saatchi VC Firm</div>
+      </div>
+    </div>
+    <footer class="site-footer">2027–Present &copy; PIAX &nbsp;·&nbsp; All rights reserved.</footer>
+  </main>
+
+  <!-- ══════════════════════════════════════
+       PAGE: RESOURCES
+  ══════════════════════════════════════ -->
+  <main class="page" id="page-resources">
+    <div class="inner-page resources-inner">
+
+      <p class="page-eyebrow">>/ Resources</p>
+      <h2 class="page-title">Recommended Reading & Viewing</h2>
+      <div class="divider expanded"></div>
+
+      <!-- ── MOVIES & SERIES ── -->
+      <section class="res-section">
+        <p class="res-label">>/ Films &amp; Series — AI · Xenobiology · Transhumanism · Machines</p>
+        <div class="media-strip">
+
+          <div class="media-card">
+            <div class="media-cover">
+              <img src="https://github.com/danielsaatchi/AIJAM/blob/main/docs/coverArt/kimera2092_cover_art.jpg?raw=true" alt="KIMERA 2092" />
+            </div>
+            <p class="media-title">KIMERA 2092</p>
+            <p class="media-year">2026–2029</p>
+          </div>
+
+          <div class="media-card">
+            <div class="media-cover">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSgoJmizP5-ewKZpTtm60krAATnsFd4BdC2O-BUXByzA&s" alt="The Matrix" />
+            </div>
+            <p class="media-title">The Matrix Sequels</p>
+            <p class="media-year">1999–2021</p>
+          </div>
+
+          <div class="media-card">
+            <div class="media-cover">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFnFiojvtGSOm04CYdp3jpRYU0cAAGjBMX6SwuW55Hb-fitqWiJoqP3O2s&s=10" alt="Transcendence" />
+            </div>
+            <p class="media-title">Transcendence</p>
+            <p class="media-year">2014</p>
+          </div>
+
+          <div class="media-card">
+            <div class="media-cover">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrL-9bjxPBb88u51joxu76zmk51_IrBxXgRtAvDlxmfy4T-2n2gRESb50&s=10" alt="Ex Machina" />
+            </div>
+            <p class="media-title">Ex Machina</p>
+            <p class="media-year">2014</p>
+          </div>
+
+          <div class="media-card">
+            <div class="media-cover">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBhmvkKvhLTxd3__TrzKCSkgRGxxLs17IT5Q_FUMCMDKPU8vmngpxRm4Ya&s=10" alt="Blade Runner 2049" />
+            </div>
+            <p class="media-title">Blade Runner 2049</p>
+            <p class="media-year">2017</p>
+          </div>
+
+          <div class="media-card">
+            <div class="media-cover">
+              <img src="https://m.media-amazon.com/images/M/MV5BODcxMzY3ODY1NF5BMl5BanBnXkFtZTgwNzg1NDY4MTE@._V1_.jpg" alt="Lucy" />
+            </div>
+            <p class="media-title">Lucy</p>
+            <p class="media-year">2014</p>
+          </div>
+
+          <div class="media-card">
+            <div class="media-cover">
+              <img src="https://upload.wikimedia.org/wikipedia/en/5/56/The-island.jpg" alt="The Island" />
+            </div>
+            <p class="media-title">The Island</p>
+            <p class="media-year">2005</p>
+          </div>
+
+          <div class="media-card">
+            <div class="media-cover">
+              <img src="https://upload.wikimedia.org/wikipedia/en/2/2f/Morbius_%28film%29_poster.jpg" alt="Morbius" />
+            </div>
+            <p class="media-title">Morbius</p>
+            <p class="media-year">2022</p>
+          </div>
+
+          <div class="media-card">
+            <div class="media-cover">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2q3nvBnzAAtOECMEU2GNEoH81txXIDITUIyS2GSJ8vJGDkWbAKqztlGYT&s=10" alt="Venom" />
+            </div>
+            <p class="media-title">Venom</p>
+            <p class="media-year">2018</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── BOOKS ── -->
+      <section class="res-section">
+        <p class="res-label">>/ Books</p>
+        <div class="media-strip" id="book-strip">
+
+          <div class="media-card">
+            <div class="media-cover">
+              <img src="https://github.com/danielsaatchi/AIJAM/blob/main/docs/coverArt/MyT%20MyT%20book_cover.png?raw=true" alt="My Traumas | My Technologies" />
+            </div>
+            <p class="media-title">My Traumas | My Technologies</p>
+            <p class="media-year">Daniel Saatchi</p>
+          </div>
+
+          <div class="media-card">
+            <div class="media-cover book-cover">
+              <span class="book-placeholder-title">In The Dark</span>
+            </div>
+            <p class="media-title">In The Dark</p>
+            <p class="media-year">TBA</p>
+          </div>
+
+          <div class="media-card">
+            <div class="media-cover">
+              <img src="https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1632184267i/831880.jpg" alt="The Left Hand of Darkness" />
+            </div>
+            <p class="media-title">The Left Hand of Darkness</p>
+            <p class="media-year">Ursula K. Le Guin</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── SCIENCE JOURNALS ── -->
+      <section class="res-section">
+        <p class="res-label">>/ Science Journals — cover arts coming soon</p>
+        <div class="media-strip journals-placeholder">
+          <div class="journal-slot">
+            <div class="media-cover journal-cover"><span class="journal-placeholder-text">Journal I</span></div>
+          </div>
+          <div class="journal-slot">
+            <div class="media-cover journal-cover"><span class="journal-placeholder-text">Journal II</span></div>
+          </div>
+          <div class="journal-slot">
+            <div class="media-cover journal-cover"><span class="journal-placeholder-text">Journal III</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── PUBLICATIONS ── -->
+      <section class="res-section">
+        <p class="res-label">>/ Publications</p>
+        <ul class="pub-list">
+          <li class="pub-item">
+            <span class="pub-index">—</span>
+            <span class="pub-text">Publications will be listed here. More details coming soon.</span>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+    <footer class="site-footer">2027–Present &copy; PIAX &nbsp;·&nbsp; All rights reserved.</footer>
+  </main>
+
+  <script src="typing.js"></script>
+</body>
+</html>
