@@ -2,7 +2,7 @@
 Posthumanism Institute of AI &amp; Xenobiotechnology (PIAX)
 
 ## Founder & Director
-Daniel Saatchi, 
+Daniel Saatchi, PhD
 
 PIAX Research Professor of 
 
