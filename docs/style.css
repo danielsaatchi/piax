@@ -826,3 +826,200 @@ html, body {
   color: var(--org-col);
   border-color: var(--establish-col);
 }
+
+/* ══════════════════════════════════════
+   LEADERSHIP PAGE
+══════════════════════════════════════ */
+
+#page-leadership {
+  background: transparent;
+  transition: background 0.5s;
+}
+
+#page-leadership::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 80% 80% at 50% 50%,
+    var(--hero-c1) 0%,
+    var(--hero-c2) 55%,
+    transparent 100%
+  );
+}
+
+#page-leadership .inner-page {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 4rem;
+}
+
+/* ── Leader card ── */
+.leader-card {
+  margin-top: 2.4rem;
+  border: 1px solid var(--toggle-border);
+  padding: 2rem;
+  transition: border-color 0.5s;
+}
+
+/* ── Header row: monogram + name/role ── */
+.leader-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.leader-monogram {
+  flex-shrink: 0;
+  width: 3.2rem;
+  height: 3.2rem;
+  border: 1px solid var(--toggle-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--org-col);
+  background: var(--toggle-track);
+  transition: color 0.5s, background 0.5s, border-color 0.5s;
+}
+
+.leader-name {
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--title-col);
+  margin-bottom: 0.3rem;
+  transition: color 0.5s;
+}
+
+.leader-role {
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #ff2200;
+  margin-bottom: 0.25rem;
+}
+
+.leader-links {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.leader-role-sub {
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--establish-col);
+  line-height: 1.7;
+  transition: color 0.5s;
+}
+
+/* ── Bio paragraphs ── */
+.leader-bio {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-bottom: 1.8rem;
+}
+
+.leader-bio p {
+  font-size: 0.68rem;
+  letter-spacing: 0.07em;
+  line-height: 1.85;
+  color: var(--establish-col);
+  transition: color 0.5s;
+}
+
+/* ── Meta blocks ── */
+.leader-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.leader-meta-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--toggle-border);
+  transition: border-color 0.5s;
+}
+
+.leader-meta-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--eyebrow-col);
+  transition: color 0.5s;
+}
+
+.leader-meta-val {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--title-col);
+  line-height: 1.7;
+  transition: color 0.5s;
+}
+
+/* ── Publication item enhanced ── */
+.pub-item {
+  display: flex;
+  gap: 1.2rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--toggle-border);
+  transition: border-color 0.5s;
+}
+
+.pub-item:first-child { border-top: 1px solid var(--toggle-border); }
+
+.pub-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.pub-title {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  color: var(--title-col);
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: color 0.5s;
+}
+
+.pub-authors {
+  font-size: 0.62rem;
+  letter-spacing: 0.07em;
+  color: var(--establish-col);
+  line-height: 1.6;
+  transition: color 0.5s;
+}
+
+.pub-journal {
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  color: var(--eyebrow-col);
+  text-transform: uppercase;
+  transition: color 0.5s;
+}
+
+.pub-link {
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  color: #ff2200;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+  transition: opacity 0.2s;
+}
+
+.pub-link:hover { opacity: 0.7; }
