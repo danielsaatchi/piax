@@ -44,6 +44,15 @@ const THEME = (() => {
    PAGE ROUTER
 ═══════════════════════════════════════════ */
 (function pageRouter() {
+  const PAGE_TITLES = {
+    home:          "PIAX >/ Homepage",
+    leadership:    "PIAX >/ Leadership",
+    research:      "PIAX >/ Research",
+    collaborators: "PIAX >/ Collaborators",
+    sponsors:      "PIAX >/ Sponsors",
+    resources:     "PIAX >/ Resources",
+  };
+
   function navigate(pageId) {
     // Hide all pages
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
@@ -57,7 +66,8 @@ const THEME = (() => {
     const link = document.querySelector(`.nav-link[data-page="${pageId}"]`);
     if (link) link.classList.add("active");
 
-    // Rain + floating words always run in background — no need to touch canvas
+    // Update browser tab title
+    document.title = PAGE_TITLES[pageId] || "PIAX";
   }
 
   document.addEventListener("DOMContentLoaded", () => {
