@@ -303,9 +303,10 @@ html, body {
   top: 0; left: 0; right: 0;
   z-index: 50;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 2rem;
-  padding: 0.75rem 1.8rem;
+  gap: 0.4rem 0.8rem;
+  padding: 0.6rem 1rem;
   background: transparent;
   border-bottom: 1px solid var(--toggle-border);
   backdrop-filter: blur(8px);
@@ -315,9 +316,9 @@ html, body {
 
 .nav-brand {
   font-family: var(--font-mono, "Cascadia Code", monospace);
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.25em;
   color: var(--org-col);
   text-transform: uppercase;
   flex-shrink: 0;
@@ -325,21 +326,24 @@ html, body {
 
 .nav-links {
   display: flex;
+  flex-wrap: wrap;
   list-style: none;
-  gap: 0.2rem;
+  gap: 0.1rem;
   flex: 1;
+  min-width: 0;
 }
 
 .nav-link {
   font-family: var(--font-mono, "Cascadia Code", monospace);
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--toggle-label);
-  padding: 0.35rem 0.7rem;
+  padding: 0.28rem 0.5rem;
   border: 1px solid transparent;
   border-radius: 2px;
+  white-space: nowrap;
   transition: color 0.2s, border-color 0.2s;
 }
 
@@ -354,6 +358,13 @@ html, body {
   position: static;
   margin-left: auto;
   flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .nav { padding: 0.5rem 0.75rem; gap: 0.3rem 0.5rem; }
+  .nav-brand { font-size: 0.62rem; letter-spacing: 0.15em; }
+  .nav-link { font-size: 0.5rem; letter-spacing: 0.1em; padding: 0.22rem 0.38rem; }
+  .toggle-label { display: none; }
 }
 
 /* ══════════════════════════════════════
