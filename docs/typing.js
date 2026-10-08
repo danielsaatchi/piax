@@ -51,6 +51,8 @@ const THEME = (() => {
     collaborators: "PIAX >/ Collaborators",
     sponsors:      "PIAX >/ Sponsors",
     resources:     "PIAX >/ Resources",
+    careers:       "PIAX >/ Careers",
+    apply:         "PIAX >/ Apply",
   };
 
   function navigate(pageId) {
@@ -81,6 +83,73 @@ const THEME = (() => {
 
     // Default: home active
     navigate("home");
+
+    // Apply button on careers page
+    document.querySelectorAll('.careers-apply-btn[data-page="apply"]').forEach(btn => {
+      btn.addEventListener("click", e => { e.preventDefault(); navigate("apply"); });
+    });
+
+    // Application form submit
+    const form = document.getElementById("applyForm");
+    if (form) {
+      form.addEventListener("submit", function(e) {
+        e.preventDefault();
+        const get = id => (document.getElementById(id)||{}).value?.trim()||"";
+
+        const name=get("f-name"), email=get("f-email"), country=get("f-country"),
+              division=get("f-division"), research=get("f-research"), cv=get("f-cv");
+
+        if (!name||!email||!country||!division||!research||!cv) {
+          alert("Please fill in all required fields (marked *)."); return;
+        }
+
+        const sBtn = document.getElementById("submitBtn");
+        sBtn.disabled = true; sBtn.textContent = ">/ Submitting...";
+
+        const now = new Date().toISOString().replace("T"," ").slice(0,16)+" UTC";
+        const tg = [
+          `🔬 PIAX — New Application`, `📅 ${now}`, ``,
+          `👤 Name: ${name}`, `📧 Email: ${email}`, `🌍 Country: ${country}`,
+          `🎓 Degree: ${get("f-degree")||"—"}`, `🏛 Institution: ${get("f-institution")||"—"}`, ``,
+          `🔭 Division: ${division}`, ``,
+          `📝 Research Direction:`, research, ``,
+          `💰 Funding Strategy:`, get("f-funding")||"—", ``,
+          `📎 CV: ${cv}`,
+          `📄 Research Statement: ${get("f-statement")||"—"}`,
+          `📚 Publications: ${get("f-pubs")||"—"}`,
+          `🔗 Scholar / ORCID: ${get("f-scholar")||"—"}`,
+          `🌐 Website: ${get("f-website")||"—"}`, ``,
+          `💬 Notes: ${get("f-notes")||"—"}`, ``,
+          `— PIAX Application Form`,
+        ].join("\n");
+
+        document.getElementById("tg-text").textContent = tg;
+        document.getElementById("tg-box").style.display = "block";
+        document.getElementById("success-msg").innerHTML =
+          `✓ &nbsp;Submission prepared. To complete your application:<br><br>` +
+          `<strong>1.</strong> Copy the message below using <em>&gt;/ Copy Message</em><br>` +
+          `<strong>2.</strong> Send it to one of the following:<br><br>` +
+          `&nbsp;&nbsp;📱 Telegram: <a class="pub-link" href="https://t.me/ds461" target="_blank">@ds461</a><br>` +
+          `&nbsp;&nbsp;𝕏 X / Twitter: <a class="pub-link" href="https://x.com/danielsaatchi" target="_blank">@danielsaatchi</a><br>` +
+          `&nbsp;&nbsp;📸 Instagram: <a class="pub-link" href="https://instagram.com/danielsaatchi" target="_blank">@danielsaatchi</a>`;
+        document.getElementById("success-msg").style.display = "block";
+        sBtn.textContent = ">/ Submitted";
+        setTimeout(()=>{ sBtn.disabled=false; sBtn.textContent=">/ Submit Another"; }, 3000);
+        form.reset();
+        document.getElementById("tg-box").scrollIntoView({behavior:"smooth",block:"start"});
+      });
+
+      // Copy button
+      const copyBtn = document.getElementById("copy-btn");
+      if (copyBtn) {
+        copyBtn.addEventListener("click", function() {
+          navigator.clipboard.writeText(document.getElementById("tg-text").textContent).then(()=>{
+            this.textContent=">/ Copied!";
+            setTimeout(()=>this.textContent=">/ Copy Message",2000);
+          });
+        });
+      }
+    }
   });
 })();
 

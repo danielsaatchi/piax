@@ -1034,3 +1034,333 @@ html, body {
 }
 
 .pub-link:hover { opacity: 0.7; }
+
+/* ══════════════════════════════════════
+   CAREERS PAGE
+══════════════════════════════════════ */
+
+#page-careers {
+  background: transparent;
+  transition: background 0.5s;
+}
+
+#page-careers::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 80% 80% at 50% 50%,
+    var(--hero-c1) 0%,
+    var(--hero-c2) 55%,
+    transparent 100%
+  );
+}
+
+#page-careers .inner-page {
+  position: relative;
+  z-index: 1;
+}
+
+.careers-inner { max-width: 820px; padding-bottom: 4rem; }
+
+.careers-intro {
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  line-height: 1.85;
+  color: var(--establish-col);
+  margin-top: 1.8rem;
+  transition: color 0.5s;
+}
+
+/* ── Block ── */
+.careers-block {
+  margin-top: 2.2rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid var(--toggle-border);
+  transition: border-color 0.5s;
+}
+
+.careers-block-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--eyebrow-col);
+  margin-bottom: 0.8rem;
+  transition: color 0.5s;
+}
+
+.careers-block-text {
+  font-size: 0.68rem;
+  letter-spacing: 0.07em;
+  line-height: 1.85;
+  color: var(--establish-col);
+  transition: color 0.5s;
+  text-transform: none;
+}
+
+/* ── Exchange columns ── */
+.careers-exchange {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  margin-top: 1.4rem;
+  flex-wrap: wrap;
+}
+
+.careers-exchange-col {
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border: 1px solid var(--toggle-border);
+  padding: 1rem;
+  transition: border-color 0.5s;
+}
+
+.careers-exchange-head {
+  font-size: 0.58rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #ff2200;
+}
+
+.careers-exchange-val {
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  line-height: 1.7;
+  color: var(--establish-col);
+  transition: color 0.5s;
+}
+
+.careers-exchange-divider {
+  font-size: 1.2rem;
+  color: var(--eyebrow-col);
+  align-self: center;
+  flex-shrink: 0;
+}
+
+/* ── Founding list ── */
+.founding-list {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.founding-item {
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--toggle-border);
+  transition: border-color 0.5s;
+}
+
+.founding-item:first-child { border-top: 1px solid var(--toggle-border); }
+
+.founding-num {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--eyebrow-col);
+  flex-shrink: 0;
+  width: 1.8rem;
+  transition: color 0.5s;
+}
+
+.founding-name {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--title-col);
+  transition: color 0.5s;
+}
+
+.founding-status {
+  display: block;
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+}
+
+.founding-filled { color: #ff2200; }
+.founding-open   { color: var(--eyebrow-col); }
+
+/* ── Principle quote ── */
+.careers-principle {
+  margin-top: 2.2rem;
+  padding: 1.4rem 1.6rem;
+  border-left: 2px solid #ff2200;
+  transition: border-color 0.5s;
+}
+
+.careers-principle-text {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+  color: var(--title-col);
+  font-style: italic;
+  transition: color 0.5s;
+}
+
+/* ── Apply button ── */
+.careers-apply-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #ff2200;
+  text-decoration: none;
+  border: 1px solid #ff2200;
+  padding: 0.55rem 1.2rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.careers-apply-btn:hover {
+  background: #ff2200;
+  color: #fff;
+}
+
+/* ══════════════════════════════════════
+   APPLY PAGE
+══════════════════════════════════════ */
+
+#page-apply {
+  background: transparent;
+  transition: background 0.5s;
+}
+
+#page-apply::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 80% 80% at 50% 50%,
+    var(--hero-c1) 0%,
+    var(--hero-c2) 55%,
+    transparent 100%
+  );
+}
+
+#page-apply .inner-page { position: relative; z-index: 1; }
+
+.apply-inner { max-width: 680px; padding-bottom: 4rem; }
+
+.section-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--eyebrow-col);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  transition: color 0.5s;
+}
+
+.apply-field { margin-bottom: 1.2rem; }
+
+.apply-label {
+  display: block;
+  font-size: 0.56rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--eyebrow-col);
+  margin-bottom: 0.4rem;
+  transition: color 0.5s;
+}
+
+.apply-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--toggle-border);
+  color: var(--title-col);
+  font-family: "Cascadia Code","Cascadia Mono","Courier New",monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  padding: 0.55rem 0.2rem;
+  outline: none;
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color 0.2s, color 0.5s;
+}
+
+.apply-input:focus { border-bottom-color: var(--establish-col); }
+
+.apply-textarea {
+  resize: vertical;
+  min-height: 85px;
+  border: 1px solid var(--toggle-border);
+  padding: 0.6rem 0.5rem;
+}
+
+.apply-textarea:focus { border-color: var(--establish-col); }
+
+select.apply-input { cursor: pointer; }
+
+.apply-hint {
+  font-size: 0.53rem;
+  letter-spacing: 0.14em;
+  color: var(--eyebrow-col);
+  margin-top: 0.3rem;
+  transition: color 0.5s;
+}
+
+/* Telegram box */
+.tg-box {
+  display: none;
+  margin-top: 2rem;
+  border: 1px solid var(--toggle-border);
+  padding: 1.2rem;
+  transition: border-color 0.5s;
+}
+
+.tg-box-label {
+  font-size: 0.55rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #ff2200;
+  margin-bottom: 0.8rem;
+}
+
+.tg-text {
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  line-height: 1.8;
+  color: var(--title-col);
+  white-space: pre-wrap;
+  word-break: break-word;
+  transition: color 0.5s;
+}
+
+.copy-btn {
+  display: inline-block;
+  margin-top: 0.8rem;
+  background: transparent;
+  border: 1px solid var(--toggle-border);
+  color: var(--eyebrow-col);
+  font-family: "Cascadia Code","Cascadia Mono","Courier New",monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.copy-btn:hover { border-color: var(--establish-col); color: var(--title-col); }
+
+.success-msg {
+  display: none;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  color: #ff2200;
+  margin-top: 1.4rem;
+  text-align: center;
+}
