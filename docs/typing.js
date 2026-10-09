@@ -73,20 +73,31 @@ const THEME = (() => {
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    // Wire nav links
+    // Hash-based routing — read hash on load and update on navigate
+    const hashPage = window.location.hash.replace("#","") || "home";
+    navigate(Object.keys(PAGE_TITLES).includes(hashPage) ? hashPage : "home");
+
+    // Update hash when navigating (enables shareable URLs like site.com/#careers)
+    const _navigate = navigate;
+    window.navigateTo = function(pageId) {
+      _navigate(pageId);
+      history.pushState(null, "", "#" + pageId);
+    };
+
+    // Re-wire nav links to use hash-updating navigate
     document.querySelectorAll(".nav-link").forEach(link => {
-      link.addEventListener("click", e => {
-        e.preventDefault();
-        navigate(link.dataset.page);
-      });
+      link.onclick = e => { e.preventDefault(); window.navigateTo(link.dataset.page); };
     });
 
-    // Default: home active
-    navigate("home");
+    // Handle browser back/forward
+    window.addEventListener("popstate", () => {
+      const p = window.location.hash.replace("#","") || "home";
+      _navigate(Object.keys(PAGE_TITLES).includes(p) ? p : "home");
+    });
 
     // Apply button on careers page
     document.querySelectorAll('.careers-apply-btn[data-page="apply"]').forEach(btn => {
-      btn.addEventListener("click", e => { e.preventDefault(); navigate("apply"); });
+      btn.addEventListener("click", e => { e.preventDefault(); window.navigateTo("apply"); });
     });
 
     // Application form submit
@@ -107,9 +118,13 @@ const THEME = (() => {
         sBtn.disabled = true; sBtn.textContent = ">/ Submitting...";
 
         const now = new Date().toISOString().replace("T"," ").slice(0,16)+" UTC";
+        const title = get("f-title");
+        const gender = get("f-gender");
         const tg = [
           `🔬 PIAX — New Application`, `📅 ${now}`, ``,
-          `👤 Name: ${name}`, `📧 Email: ${email}`, `🌍 Country: ${country}`,
+          `👤 Name: ${title ? title+" " : ""}${name}`,
+          `⚧ Gender: ${gender||"—"}`,
+          `📧 Email: ${email}`, `🌍 Country: ${country}`,
           `🎓 Degree: ${get("f-degree")||"—"}`, `🏛 Institution: ${get("f-institution")||"—"}`, ``,
           `🔭 Division: ${division}`, ``,
           `📝 Research Direction:`, research, ``,
