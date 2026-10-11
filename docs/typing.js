@@ -199,7 +199,7 @@ const THEME = (() => {
   const NOTES    = "♩♪♫♬𝅝𝅗𝅥𝅘𝅥𝅯";
   const RED_POOL = ("01" + NOTES).repeat(12);
   const CHARS    = KATAKANA + KOREAN + PERSIAN + MISC + RED_POOL;
-  const RED_SET  = new Set([..."01♩♪♫♬𝅝𝅗𝅥𝅘𝅥𝅯"]);
+  const RED_SET  = new Set([..."01♩♪♫♬"]);
 
   const FONT_SIZE = 14;
   let cols, drops;
